@@ -1,35 +1,13 @@
-// import { initializeApp } from "firebase/app";
-// import { getAuth } from "firebase/auth";
-
-// const firebaseConfig = {
-//   apiKey:,
-//   authDomain: 
-//   projectId:
-//   storageBucket:,
-//   messagingSenderId: 
-//   appId:
-//   measurementId: 
-// };
-
-
-// const app = initializeApp(firebaseConfig);
-// export const authentication = getAuth(app)
-
-
-
-// signup firebase config
-
 import { initializeApp } from "firebase/app";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA_TKwU3a-w8b_W5xrIt8Ny7kBk8E0qhzw",
-  authDomain: "verify-ed45b.firebaseapp.com",
-  projectId: "verify-ed45b",
-  storageBucket: "verify-ed45b.appspot.com",
-  messagingSenderId: "795111024140",
-  appId: "1:795111024140:web:56878dce198d3413e4f029",
-  measurementId: "G-NVQT2XG2X0"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 

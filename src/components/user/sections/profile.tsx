@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../utils/methods/get";
+import { getProfile } from "../../../utils/methods/get";
 import axios from "axios";
-import { insert } from "../../store/userSlice";
+import { insert } from "../../../store/userSlice";
 interface Store{
   user:{
     user:{}

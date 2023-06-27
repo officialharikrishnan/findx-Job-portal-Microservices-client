@@ -1,6 +1,7 @@
+import React from 'react';
 import './App.css';
-import HomePage from './components/pages/homePage';
-import Header from './components/sections/header';
+import HomePage from './components/user/pages/homePage';
+import Header from './components/user/sections/header';
 
 
 

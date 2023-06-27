@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { RegisterData, useValidate } from "../../formValidation/register";
-import { REGISTER_API } from "../../utils/methods/post";
+import { RegisterData, useValidate } from "../../../formValidation/register";
+import { REGISTER_API } from "../../../utils/methods/post";
 import { useDispatch } from "react-redux";
-import { insert } from "../../store/userSlice";
+import { insert } from "../../../store/userSlice";
+import GoogleSignup from "../sections/googleReg";
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -120,6 +121,7 @@ const Register = () => {
                   </button>
                 </div>
               </form>
+              <GoogleSignup/>
             </div>
           </div>
         </div>

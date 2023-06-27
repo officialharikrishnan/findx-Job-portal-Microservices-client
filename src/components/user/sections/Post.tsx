@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 // import { getAllPost } from "../../api/methods/get";
 import { Link } from "react-router-dom";
-import { getPosts } from "../../utils/methods/get";
-import CreatePost from "./createPost";
+import { getPosts } from "../../../utils/methods/get";
+// import CreatePost from "./createPost";
 type Post = {
   data?: string;
   dateString?: string;

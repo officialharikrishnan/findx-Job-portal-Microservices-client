@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../sections/footer";
 
+
 const LandingPage = () => {
   return (
     <div>
@@ -15,7 +16,7 @@ const LandingPage = () => {
               <div className="flex items-center justify-start w-1/4 h-full pr-4">
                 <Link to={"/"} className="inline-block py-4 md:py-0">
                   <span className="p-1 text-xl font-black leading-none text-gray-900">
-                    <span>FindX</span>
+                     <span>FindX</span>
                   </span>
                 </Link>
               </div>
@@ -44,7 +45,7 @@ const LandingPage = () => {
                       Sign In
                     </Link>
                     <Link
-                      to={"/register"}
+                      to={"/hr-login"}
                       className="inline-flex items-center w-full px-6 py-3 text-sm font-medium leading-4 text-white bg-sky-600 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-sky-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-sky-600"
                     >
                       Hire

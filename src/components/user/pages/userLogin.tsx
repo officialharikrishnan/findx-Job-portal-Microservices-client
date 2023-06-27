@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import GoogleSignup from "../sections/google";
+import GoogleSignup from "../sections/googleReg";
 import { Link, useNavigate } from "react-router-dom";
-import { useValidate } from "../../formValidation/login";
-import { LOGIN_API } from "../../utils/methods/post";
+import { useValidate } from "../../../formValidation/login";
+import { LOGIN_API } from "../../../utils/methods/post";
 import { useDispatch } from "react-redux";
-import { insert } from "../../store/userSlice";
+import { insert } from "../../../store/userSlice";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 

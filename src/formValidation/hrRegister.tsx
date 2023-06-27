@@ -9,6 +9,7 @@ export type RegisterData = {
   phone: string;
   password: string;
   confirmPassword: string;
+  companyName:string;
 };
 
 export const schema: ZodType<RegisterData> = z
@@ -16,7 +17,7 @@ export const schema: ZodType<RegisterData> = z
     firstName: z
       .string()
       .min(2, { message: "Firstname must contain at least 2 character(s)" }),
-    lastName: z.string(),
+    lastName: z.string().min(2,{message:"Lastname must contain at least 2 character(s)"}),
     email: z
       .string()
       .email({ message: "Please provide a valid email address" }),
@@ -31,6 +32,7 @@ export const schema: ZodType<RegisterData> = z
         message: "password must contain atleast one Uppercase",
       }),
     confirmPassword: z.string(),
+    companyName: z.string().min(2,{message:"Please Enter Company Name"})
   })
   .refine((str) => str.password === str.confirmPassword, {
     message: "Password do not match",

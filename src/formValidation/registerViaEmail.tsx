@@ -6,9 +6,9 @@ export type RegisterData = {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
-  password: string;
-  confirmPassword: string;
+  street:string;
+  city:string;
+  country:string
 };
 
 export const schema: ZodType<RegisterData> = z
@@ -20,22 +20,12 @@ export const schema: ZodType<RegisterData> = z
     email: z
       .string()
       .email({ message: "Please provide a valid email address" }),
-    phone: z.string().refine((value) => value.length === 10, {
-      message: "Enter valid Number",
-    }),
-    password: z
-      .string()
-      .min(5, { message: "password must contain atleast 5 characters" })
-      .max(16, { message: "password cannot exceed 16 characters" })
-      .regex(/[A-Z]/, {
-        message: "password must contain atleast one Uppercase",
-      }),
-    confirmPassword: z.string(),
+    street:z.string().min(2,{message:'Enter street'}),
+    city:z.string().min(2,{message:'Enter city'}),
+    country:z.string().min(2,{message:'Enter country'}),
+    
   })
-  .refine((str) => str.password === str.confirmPassword, {
-    message: "Password do not match",
-    path: ["confirmPassword"],
-  });
+  
 
 export const useValidate = () => {
   const {

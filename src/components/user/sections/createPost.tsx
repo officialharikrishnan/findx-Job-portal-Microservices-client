@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CREATE_POST } from "../../utils/methods/post";
+import { CREATE_POST } from "../../../utils/methods/post";
 import axios from "axios";
 
 const CreatePost = () => {
