@@ -11,7 +11,7 @@ const HrRegister = () => {
   
   return (
     <div className="">
-      <div className="antialiased bg-gradient-to-br from-green-100 to-white">
+      <div className="antialiased bg-gradient-to-br from-sky-100 to-white">
         <div className="container px-6  mx-auto">
           <div className="flex flex-col text-center md:text-left md:flex-row h-full justify-evenly md:items-center">
             <div className="flex flex-col w-full">
@@ -32,7 +32,7 @@ const HrRegister = () => {
                 </svg>
               </div>
               <h1 className="text-5xl text-gray-800 font-bold">HR Area</h1>
-              <p className="w-5/12 mx-auto md:mx-0 text-gray-500">
+              <p className="w-8/12 mx-auto md:mx-0 text-gray-500">
                 Treat your employees right, so they won't use your internet to
                 search for a new job.
               </p>
@@ -129,7 +129,7 @@ const HrRegister = () => {
                   <div id="button" className="flex flex-col w-full my-5">
                     <button
                       type="submit"
-                      className="w-full py-4 bg-green-600 rounded-lg text-green-100"
+                      className="w-full py-4 bg-sky-600 rounded-lg text-green-100"
                     >
                       <div className="flex flex-row items-center justify-center">
                         <div className="mr-2">

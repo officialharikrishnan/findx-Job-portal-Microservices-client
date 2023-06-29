@@ -1,31 +1,74 @@
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterData, useValidate } from "../../../formValidation/register";
-import { REGISTER_API } from "../../../utils/methods/post";
+import { REGISTER_API, USER_EXIST_CHECK } from "../../../utils/methods/post";
 import { useDispatch } from "react-redux";
 import { insert } from "../../../store/userSlice";
 import GoogleSignup from "../sections/googleReg";
-
+import { useState } from "react";
+import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
+import { app } from "../../../config/firebase";
+import { createUser } from "../../../store/tempUserSlice";
+import Alert from "../../../utils/alert/Alert";
 const Register = () => {
+  const auth = getAuth(app);
+  const appVerifier = window.recaptchaVerifier;
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [phone,setPhone]=useState('')
+  const [alert,setAlert]=useState(false)
   const {handleSubmit,register,errors} = useValidate()
   const formSubmit =async (data:RegisterData) => {
-    try{
-      const res =await REGISTER_API(data)
-      console.log(res?.status,">>>>>>>>>>>>");
-      if(res?.status === 200){
-        dispatch(insert(res.data))
-        navigate("/home")
-      }else{
-        
-      }
-      
+    const user:any = await USER_EXIST_CHECK(data)
+    console.log(user)
+    if(!user.data.userExist){
+      dispatch(createUser(data))
+      onSignUp()
+    }else{
+      // alert
+      setAlert(true)
 
-    }catch(err){
-      console.log(err);
-      
     }
+
   }
+  function onCaptchaVerify() {
+    if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+            'size': 'visible',
+            'callback': (response:any) => {
+                onSignUp()
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                // ...
+            },
+            'expired-callback': () => {
+                // Response expired. Ask user to solve reCAPTCHA again.
+                // ...
+            }
+        }, auth);
+    }
+}
+
+ function onSignUp() {
+  // e.preventDefault()
+  onCaptchaVerify()
+  console.log(phone,"phone>>>")
+  const appVerify = window.recaptchaVerifier
+
+    const phoneNumber = `+91${phone}`
+  
+  signInWithPhoneNumber(auth, phoneNumber, appVerify)
+      .then((confirmationResult) => {
+          // SMS sent. Prompt user to type the code from the message, then sign the
+          // user in with confirmationResult.confirm(code).
+          window.confirmationResult = confirmationResult;
+          navigate('/verify')
+          // ...
+      }).catch((error) => {
+          console.log(error);
+          // Error; SMS not sent
+          // ...
+      });
+ }
+
   return (
     <div>
       <div className="relative flex h-screen flex-col justify-center overflow-hidden bg-gray-50 ">
@@ -86,6 +129,7 @@ const Register = () => {
                       className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
                       placeholder="Phone"
                       {...register('phone')}
+                      onChange={(e)=>{setPhone(e.target.value)}}
                     />
                     {errors.phone ? <span className="text-red-600 text">{errors.phone.message}</span> : ""}
                   </div>
@@ -121,9 +165,12 @@ const Register = () => {
                   </button>
                 </div>
               </form>
+              <div id="recaptcha-container"></div>
               <GoogleSignup/>
             </div>
-          </div>
+          </div>  
+          {alert && <Alert color="orange" message="Accound already exists"/>}
+          
         </div>
       </div>
     </div>

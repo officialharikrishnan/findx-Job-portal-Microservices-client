@@ -14,3 +14,10 @@ export const getProfile =async () => {
         console.log(e)
     }
 }
+export const getProfile_hr =async () => {
+  try{
+      return await Axios().get("/api/hr/profile")
+  }catch(e){
+      console.log(e)
+  }
+}

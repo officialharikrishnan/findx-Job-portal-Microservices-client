@@ -1,21 +1,32 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useValidate,RegisterData } from '../../../formValidation/hrLogin'
 import { HR_LOGIN_API } from '../../../utils/methods/post'
+import { useDispatch } from 'react-redux'
+import { insertHr } from '../../../store/hrSlice'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const HrLogin = () => {
   const {register,handleSubmit,errors} = useValidate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const formSubmit =async (data:RegisterData) => {
       const res =await HR_LOGIN_API(data)
+      if(res?.status === 200){
+        dispatch(insertHr(res.data.hr))
+        cookies.set('findx-hr',res.data.token, { path: '/' })
+        navigate("/hr-dashboard")
+      }
       console.log(res)
   }
   return (
     <div>
-        <body className="antialiased bg-gradient-to-br from-green-100 to-white">
+        <body className="antialiased bg-gradient-to-br from-sky-100 to-white">
     <div className="container px-6 mx-auto">
       <div
         className="flex flex-col text-center md:text-left md:flex-row h-screen justify-evenly md:items-center"
       >
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full mt-24">
           <div>
             <svg
               className="w-20 h-20 mx-auto md:float-left fill-stroke text-gray-800"
@@ -33,7 +44,7 @@ const HrLogin = () => {
             </svg>
           </div>
           <h1 className="text-5xl text-gray-800 font-bold">HR Area</h1>
-          <p className="w-5/12 mx-auto md:mx-0 text-gray-500">
+          <p className="w-8/12  mx-auto md:mx-0 text-gray-500">
           Treat your employees right, so they won't use your internet to search for a new job.
           </p>
         </div>
@@ -70,7 +81,7 @@ const HrLogin = () => {
               <div id="button" className="flex flex-col w-full my-5">
                 <button
                   type="submit"
-                  className="w-full py-4 bg-green-600 rounded-lg text-green-100"
+                  className="w-full py-4 bg-sky-600 rounded-lg text-green-100"
                 >
                   <div className="flex flex-row items-center justify-center">
                     <div className="mr-2">

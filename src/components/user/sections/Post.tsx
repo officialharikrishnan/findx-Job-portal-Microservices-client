@@ -13,19 +13,19 @@ type Post = {
 };
 function Post() {
   const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    getAllPost()
-      .then((res: any) => {
-        console.log(res.data);
-        setPosts(res.data);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
-  }, []);
-  const getAllPost = async () => {
-    return await getPosts();
-  };
+  // useEffect(() => {
+  //   getAllPost()
+  //     .then((res: any) => {
+  //       console.log(res.data);
+  //       setPosts(res.data);
+  //     })
+  //     .catch((err: Error) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+  // const getAllPost = async () => {
+  //   return await getPosts();
+  // };
 
   return (
     <div className="overflow-auto max-h-screen">

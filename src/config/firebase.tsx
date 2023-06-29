@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-
+declare global {
+  interface Window {
+      recaptchaVerifier: any;
+      confirmationResult:any;
+  }
+}
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -9,6 +14,5 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING,
   appId: process.env.REACT_APP_APP_ID
 };
-
 
 export const app = initializeApp(firebaseConfig);
