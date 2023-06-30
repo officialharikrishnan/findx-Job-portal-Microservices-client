@@ -2,50 +2,55 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, getProfile_hr } from "../../../utils/methods/get";
 import { insertHr } from "../../../store/hrSlice";
-interface Store{
-  hr:{
-    hr:{}
-  }
+import { useNavigate } from "react-router-dom";
+interface Store {
+  hr: {
+    hr: {};
+  };
 }
 type Data = {
-  firstName?:string
-  email?:string
-}
+  firstName?: string;
+  email?: string;
+};
 
 const Profile = () => {
-  const dispatch = useDispatch()
-  const data:Data = useSelector(((store:Store) => store.hr.hr))
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const data: Data = useSelector((store: Store) => store.hr.hr);
 
-    useEffect( ()=>{
-      getUser()
-    },[])
-    const getUser = async ()=>{
-      const data = await  getProfile_hr()
-      dispatch(insertHr(data?.data))
-
+  useEffect(() => {
+    getUser();
+  }, []);
+  const getUser = async () => {
+    const data = await getProfile_hr();
+    if (data?.status !== 200) {
+      navigate("/hr-login");
+    } else {
+      dispatch(insertHr(data?.data));
     }
+  };
   // }
-  console.log("hoem>>>>",data)
+  console.log("hoem>>>>", data);
   return (
     <div>
       <div className="max-w-sm pb-5 mx-auto mt-4 overflow-hidden rounded-lg shadow-lg">
         <div className="h-40 bg-gradient-to-br from-sky-200 via-sky-500 to-sky-900">
           <div className="flex justify-center">
             <span className="mt-10 text-4xl font-extrabold text-white">
-              {data.firstName}
+              {data && data.firstName}
             </span>
           </div>
           <div className="flex justify-center">
             <img
               className="object-cover w-24 h-24 mt-4 border-4 border-gray-200 rounded-full"
               src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg"
-                alt=""
+              alt=""
             />
           </div>
         </div>
         <div className="px-6 py-4">
           <div className="flex justify-center mt-10 mb-4 text-xl font-medium">
-            {data.email}
+            {data && data.email}
           </div>
           <div className="flex w-full text-gray-600">
             <svg

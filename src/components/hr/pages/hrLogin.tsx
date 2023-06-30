@@ -5,6 +5,7 @@ import { HR_LOGIN_API } from '../../../utils/methods/post'
 import { useDispatch } from 'react-redux'
 import { insertHr } from '../../../store/hrSlice'
 import Cookies from 'universal-cookie';
+import GoogleSignInHr from '../sections/hrGoogleLogin'
 const cookies = new Cookies();
 const HrLogin = () => {
   const {register,handleSubmit,errors} = useValidate()
@@ -60,7 +61,7 @@ const HrLogin = () => {
                 <input
                   type="text"
                   id="phone"
-                  placeholder="Please insert your username"
+                  placeholder="Please insert your phone"
                   className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                   {...register('phone')}
                 />
@@ -115,7 +116,8 @@ const HrLogin = () => {
                 </div>
               </div>
             </form>
-          </div>
+            <GoogleSignInHr/>
+          </div> 
         </div>
       </div>
     </div>

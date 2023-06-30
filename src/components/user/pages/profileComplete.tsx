@@ -23,7 +23,7 @@ const ProfileComplete = () => {
     try{
       const res =await GOOGLE_REG_API(data)
       console.log(res?.status,">>>>>>>>>>>>");
-      if(res?.data.userExist === false){
+      if(res?.data.UserExist === false){
         dispatch(insert(res.data.user))
         cookies.set('findx',res.data.token, { path: '/' })
         navigate("/home")

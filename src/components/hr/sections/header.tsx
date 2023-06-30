@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-
+import { cookieHandler } from "../../../utils/cookie/cookieHandler";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
+  async function logoutHandler(e:any){
+    cookieHandler().removeCookie('findx-hr')
+    navigate('/hr-login')
+  }
   return (
     <div>
       <header className="w-full bg-sky-500 text-gray-100 body-font mb-4 shadow-sm">
@@ -27,7 +34,7 @@ const Header = () => {
               />
             </svg>
             <span className="ml-3 text-xl text-gray-100 font-semibold antialiased">
-              FindX HR
+              FindX
             </span>
           </a>
           {/* Navbar */}
@@ -38,10 +45,12 @@ const Header = () => {
             <a href="#link" className="mr-8 hover:text-gray-300">
               Jobs
             </a>
-          
             <a href="#link" className="mr-8 hover:text-gray-300">
-              Profile
+            Profile
             </a>
+            <button onClick={e=>logoutHandler(e)} className="mr-8 hover:text-gray-300">
+              logout
+            </button>
           </nav>
           {/* Avatar */}
           <div className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">
@@ -62,12 +71,12 @@ const Header = () => {
           </div>
           {/* Burger icon standard */}
           <button
-            className="md:hidden rounded-md active:outline-none focus:outline-none focus:ring-2 focus:ring-inset "
+            className="md:hidden rounded-md active:outline-none focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
             onClick={() => setIsOpen(!isOpen)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 rounded-md text-gray-300 bg-gradient-to-br from-transparent to-transparent hover:text-white "
+              className="h-8 w-8 rounded-md text-gray-300 bg-gradient-to-br from-transparent to-transparent hover:text-white hover:from-pink-500 hover:to-yellow-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -84,7 +93,7 @@ const Header = () => {
 
         {/* :MOBILE MENU */}
         {isOpen && (
-          <div className="w-full flex flex-col py-4 px-3 md:hidden bg-sky-800 text-base uppercase text-center font-semibold">
+          <div className="w-full flex flex-col py-4 px-3 md:hidden bg-gray-900 text-base uppercase text-center font-semibold">
             <a
               href="#link"
               className="block px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700"

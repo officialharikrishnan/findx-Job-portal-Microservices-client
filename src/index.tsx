@@ -13,6 +13,8 @@ import HrLogin from "./components/hr/pages/hrLogin";
 import HrRegister from "./components/hr/pages/hrRegister";
 import Otp from "./components/user/pages/otp";
 import HrDashboard from "./components/hr/pages/hrDashboard";
+import HrOtp from "./components/hr/pages/otp";
+import HrProfileComplete from "./components/hr/pages/hrProfileComplete";
 const appRouter = createBrowserRouter([
   {
     path: "/login",
@@ -43,8 +45,16 @@ const appRouter = createBrowserRouter([
     element:<HrRegister/>
   },
   {
+    path:'/hr-details',
+    element:<HrProfileComplete/>
+  },
+  {
     path:'/verify',
     element:<Otp/>
+  },
+  {
+    path:'/hr-verify',
+    element:<HrOtp/>
   },
   {
     path:'/hr-dashboard',

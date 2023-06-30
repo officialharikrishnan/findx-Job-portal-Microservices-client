@@ -1,36 +1,35 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { REGISTER_API } from "../../../utils/methods/post";
-import { insert } from "../../../store/userSlice";
+import { HR_REGISTER_API } from "../../../utils/methods/post";
 import { useNavigate } from "react-router-dom";
-import { RegisterData } from "../../../formValidation/register";
+import { RegisterData } from "../../../formValidation/hrRegister";
+import { insertHr } from "../../../store/hrSlice";
 import { cookieHandler } from "../../../utils/cookie/cookieHandler";
-interface tempUSer{
-  tempUser:{
-    user:RegisterData
+interface tempHr{
+  tempHr:{
+    hr:RegisterData
   }
 }
 
-const Otp = () => {
-  const userData:RegisterData = useSelector((store:tempUSer) => store.tempUser.user);
+const HrOtp = () => {
+  const hrData:RegisterData = useSelector((store:tempHr) => store.tempHr.hr);
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [otp,setOtp]=useState('')
-  console.log("before>>>",userData)
+  console.log("before>>>",hrData)
   function onOtpVerify(e:any) {
     e.preventDefault()
-    console.log("verify",userData)
+    console.log("verify",hrData)
   
     window.confirmationResult.confirm(otp).then(async () => {
       try{
-        console.log("otp>>>>data>>>", userData)
-        const res =await REGISTER_API(userData)
+        console.log("otp>>>>data>>>", hrData)
+        const res =await HR_REGISTER_API(hrData)
         console.log(res?.status,">>>>>>>>>>>>");
         if(res?.status === 200){
-          dispatch(insert(res.data))
-        cookieHandler().setCookie('findx',res.data.token)
-
-          navigate("/home")
+          dispatch(insertHr(res.data))
+        cookieHandler().setCookie('findx-hr',res.data.token)
+          navigate("/hr-dashboard")
         }else{
           
         }
@@ -52,7 +51,7 @@ const Otp = () => {
                 <p>Verification</p>
               </div>
               <div className="flex flex-row text-sm font-medium text-gray-400">
-                <p>We have sent a code to your {userData && userData.phone}</p>
+                <p>We have sent a code to your {hrData && hrData.phone}</p>
               </div>
             </div>
 
@@ -99,4 +98,4 @@ const Otp = () => {
   );
 };
 
-export default Otp;
+export default HrOtp;

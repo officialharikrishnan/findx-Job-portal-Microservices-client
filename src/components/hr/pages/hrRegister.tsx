@@ -1,13 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useValidate, RegisterData } from "../../../formValidation/hrRegister";
-import { HR_REGISTER_API } from "../../../utils/methods/post";
+import { HR_EXIST_CHECK } from "../../../utils/methods/post";
+import { app } from "../../../config/firebase";
+import { useNavigate } from "react-router-dom";
+import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
+import Alert from "../../../utils/alert/Alert";
+import { useDispatch } from "react-redux";
+import { createHr } from "../../../store/tempHrSlice";
+import GoogleSignupHr from "../sections/hrGoogleReg";
+
 const HrRegister = () => {
   const {register,handleSubmit,errors} = useValidate()
+  const auth = getAuth(app);
+  const navigate = useNavigate()
+  const [phone,setPhone]=useState('')
+  const [alert,setAlert]=useState(false)
+  const dispatch=useDispatch()
   const formSubmit =async (data:RegisterData)=>{
-    const res = await HR_REGISTER_API(data)
-    console.log(res)
+    console.log("hrData>>>>>>",data)
+    const hrExist = await HR_EXIST_CHECK(data) 
+    if(!hrExist?.data.hrExist){
+      dispatch(createHr(data))
+      console.log(hrExist,"hr??")
+      onSignUp()
+    }else{
+      setAlert(true)
+    }
   }
+
+  function onCaptchaVerify() {
+    if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+            'size': 'visible',
+            'callback': (response:any) => {
+                onSignUp()
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                // ...
+            },
+            'expired-callback': () => {
+                // Response expired. Ask user to solve reCAPTCHA again.
+                // ...
+            }
+        }, auth);
+    }
+}
+
+ function onSignUp() {
+  // e.preventDefault()
+  onCaptchaVerify()
+  console.log(phone,"phone>>>")
+  const appVerify = window.recaptchaVerifier
+
+    const phoneNumber = `+91${phone}`
+  
+  signInWithPhoneNumber(auth, phoneNumber, appVerify)
+      .then((confirmationResult) => {
+          // SMS sent. Prompt user to type the code from the message, then sign the
+          // user in with confirmationResult.confirm(code).
+          window.confirmationResult = confirmationResult;
+          navigate('/hr-verify')
+          // ...
+      }).catch((error) => {
+          console.log(error);
+          setAlert(true)
+          // Error; SMS not sent
+          // ...
+      });
+ }
+
+  
   
   return (
     <div className="">
@@ -72,9 +134,10 @@ const HrRegister = () => {
                     <input
                       type="text"
                       id="phone"
-                      placeholder="Please insert your username"
+                      placeholder="Please insert your phone"
                       className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                       {...register('phone')}
+                      onChange={(e)=>{setPhone(e.target.value)}}
                     />
                       {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
 
@@ -84,7 +147,7 @@ const HrRegister = () => {
                     <input
                       type="text"
                       id="email"
-                      placeholder="Please insert your username"
+                      placeholder="Please insert your email"
                       className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                       {...register('email')}
                     />
@@ -95,7 +158,7 @@ const HrRegister = () => {
                     <input
                       type="text"
                       id="companyName"
-                      placeholder="Please insert your username"
+                      placeholder="Please insert your company name"
                       className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                       {...register('companyName')}
                     />
@@ -158,16 +221,14 @@ const HrRegister = () => {
                       >
                         Already have an account?
                       </Link>
-                      <a
-                        href="#"
-                        className="w-full text-center font-medium text-gray-500"
-                      >
-                        Singup!
-                      </a>
+                      
                     </div>
                   </div>
                 </form>
+                    <GoogleSignupHr/>
+                <div id="recaptcha-container"></div>
               </div>
+          {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Accound already exists"/>}
             </div>
           </div>
         </div>

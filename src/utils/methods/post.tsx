@@ -70,3 +70,25 @@ export const HR_LOGIN_API = async (data:HRLog)=>{
 
     }
 }
+export const HR_EXIST_CHECK = async (data:any)=>{
+    try{
+        return Axios().post('/api/hr/hrCheck',data)
+    }catch(e){
+
+    }
+}
+
+export const HR_GOOGLE_REG_API = async (data:any)=>{
+    try{
+        return Axios().post('/api/hr/googleReg',data)
+    }catch(e){
+
+    }
+}
+export const HR_GOOGLE_LOG_API = async (data:any)=>{
+    try{
+        return Axios().post('/api/hr/googleLogin',data)
+    }catch(e){
+
+    }
+}

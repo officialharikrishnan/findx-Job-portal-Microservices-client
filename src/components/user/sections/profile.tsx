@@ -27,8 +27,9 @@ const Profile = () => {
       console.log(data)
       if(data?.status !== 200){
         navigate('/login')
+      }else{
+        dispatch(insert(data?.data))
       }
-      dispatch(insert(data?.data))
 
     }
   // }
