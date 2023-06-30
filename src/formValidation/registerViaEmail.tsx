@@ -6,9 +6,7 @@ export type RegisterData = {
   firstName: string;
   lastName: string;
   email: string;
-  street:string;
-  city:string;
-  country:string
+  phone:string
 };
 
 export const schema: ZodType<RegisterData> = z
@@ -20,9 +18,9 @@ export const schema: ZodType<RegisterData> = z
     email: z
       .string()
       .email({ message: "Please provide a valid email address" }),
-    street:z.string().min(2,{message:'Enter street'}),
-    city:z.string().min(2,{message:'Enter city'}),
-    country:z.string().min(2,{message:'Enter country'}),
+      phone: z.string().refine((value) => value.length === 10, {
+        message: "Enter valid Number",
+      }),
     
   })
   

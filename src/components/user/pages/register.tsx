@@ -169,7 +169,7 @@ const Register = () => {
               <GoogleSignup/>
             </div>
           </div>  
-          {alert && <Alert color="orange" message="Accound already exists"/>}
+          {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Accound already exists"/>}
           
         </div>
       </div>

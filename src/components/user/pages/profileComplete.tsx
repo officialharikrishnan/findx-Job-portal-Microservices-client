@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { RegisterData, useValidate } from "../../../formValidation/registerViaEmail";
-import { GOOGLE_API } from "../../../utils/methods/post";
+import { GOOGLE_REG_API } from "../../../utils/methods/post";
 import { useDispatch, useSelector } from "react-redux";
 import { insert } from "../../../store/userSlice";
 import Cookies from 'universal-cookie';
+import { useState } from "react";
+import Alert from "../../../utils/alert/Alert";
 
 const cookies = new Cookies();
 interface Store {
@@ -14,18 +16,20 @@ interface Store {
 const ProfileComplete = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [alert,setAlert]=useState(false)
   const data:string = useSelector((store:Store) => store.email.email )
   const {handleSubmit,register,errors} = useValidate()
   const formSubmit =async (data:RegisterData) => {
     try{
-      const res =await GOOGLE_API(data)
+      const res =await GOOGLE_REG_API(data)
       console.log(res?.status,">>>>>>>>>>>>");
-      if(res?.status === 200){
+      if(res?.data.userExist === false){
         dispatch(insert(res.data.user))
         cookies.set('findx',res.data.token, { path: '/' })
         navigate("/home")
       }else{
-        
+        console.log("else called")
+        setAlert(true)
       }
       
 
@@ -87,35 +91,14 @@ const ProfileComplete = () => {
                       type="tel"
                       id="create-account-email"
                       className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
-                      placeholder="Street"
-                      {...register('street')}
+                      placeholder="Phone"
+                      {...register('phone')}
                     />
-                    {errors.street ? <span className="text-red-600 text">{errors.street.message}</span> : ""}
+                    {errors.phone ? <span className="text-red-600 text">{errors.phone.message}</span> : ""}
                   </div>
 
                 </div>
-                <div className="flex gap-4 mb-2">
-                  <div className=" relative ">
-                    <input
-                      type="text"
-                      id="create-account-first-name"
-                      className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
-                      placeholder="City"
-                      {...register('city')}
-                    />
-                    {errors.city ? <span className="text-red-600 text">{errors.city.message}</span> : ""}
-                  </div>
-                  <div className=" relative ">
-                    <input
-                      type="text"
-                      id="create-account-last-name"
-                      className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-5 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
-                      placeholder="Country"
-                      {...register('country')}
-                      />
-                      {errors.country ? <span className="text-red-600 text">{errors.country.message}</span> : ""}
-                  </div>
-                </div>
+                
                 
                 <div className="flex w-full my-4">
                   <button
@@ -128,6 +111,8 @@ const ProfileComplete = () => {
               </form>
             </div>
           </div>
+          {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Accound already exists continue" redirect="login" redirectText="Login"/>}
+
         </div>
       </div>
     </div>

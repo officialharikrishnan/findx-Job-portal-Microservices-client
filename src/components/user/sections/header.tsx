@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-
+import { cookieHandler } from "../../../utils/cookie/cookieHandler";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
+  async function logoutHandler(e:any){
+    cookieHandler().removeCookie('findx')
+    navigate('/login')
+  }
   return (
     <div>
       <header className="w-full bg-sky-500 text-gray-100 body-font mb-4 shadow-sm">
@@ -39,11 +46,11 @@ const Header = () => {
               Jobs
             </a>
             <a href="#link" className="mr-8 hover:text-gray-300">
-              Connection
+            Profile
             </a>
-            <a href="#link" className="mr-8 hover:text-gray-300">
-              Profile
-            </a>
+            <button onClick={e=>logoutHandler(e)} className="mr-8 hover:text-gray-300">
+              logout
+            </button>
           </nav>
           {/* Avatar */}
           <div className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">

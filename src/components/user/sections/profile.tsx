@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../utils/methods/get";
 import axios from "axios";
 import { insert } from "../../../store/userSlice";
+import { useNavigate } from "react-router-dom";
 interface Store{
   user:{
     user:{}
@@ -15,6 +16,7 @@ type Data = {
 
 const Profile = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const data:Data = useSelector(((store:Store) => store.user.user))
 
     useEffect( ()=>{
@@ -22,6 +24,10 @@ const Profile = () => {
     },[])
     const getUser = async ()=>{
       const data = await  getProfile()
+      console.log(data)
+      if(data?.status !== 200){
+        navigate('/login')
+      }
       dispatch(insert(data?.data))
 
     }
@@ -33,7 +39,7 @@ const Profile = () => {
         <div className="h-40 bg-gradient-to-br from-sky-200 via-sky-500 to-sky-900">
           <div className="flex justify-center">
             <span className="mt-10 text-4xl font-extrabold text-white">
-              {data.firstName}
+              {data && data.firstName}
             </span>
           </div>
           <div className="flex justify-center">
@@ -46,7 +52,7 @@ const Profile = () => {
         </div>
         <div className="px-6 py-4">
           <div className="flex justify-center mt-10 mb-4 text-xl font-medium">
-            {data.email}
+            {data && data.email}
           </div>
           <div className="flex w-full text-gray-600">
             <svg

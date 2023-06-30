@@ -11,13 +11,14 @@ export const LOGIN_API  =async(data:any)=> {
         console.log(" called>>>>>",data)
         return Axios().post('/api/user/login',data)
     }catch(e){
-        console.log(e,"err")
+
+        console.log(e,"err catch")
     }
 }
 export const REGISTER_API  =async (data:RegisterData)=> {
     try{
         console.log(" called>>>>>",data)
-        return Axios().post('/api/user/register',{...data})
+        return Axios().post('/api/user/register',data)
     }catch(e){
         console.log(e,"err")
     }
@@ -30,9 +31,16 @@ export const CREATE_POST = async (data:any)=>{
         console.log(e)
     }
 }
-export const GOOGLE_API = async (data:any)=>{
+export const GOOGLE_REG_API = async (data:any)=>{
     try{
-        return Axios().post('/api/user/google',data)
+        return Axios().post('/api/user/googleReg',data)
+    }catch(e){
+
+    }
+}
+export const GOOGLE_LOG_API = async (data:any)=>{
+    try{
+        return Axios().post('/api/user/googleLogin',data)
     }catch(e){
 
     }

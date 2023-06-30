@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import GoogleSignup from "../sections/googleReg";
 import { Link, useNavigate } from "react-router-dom";
 import { useValidate } from "../../../formValidation/login";
 import { LOGIN_API } from "../../../utils/methods/post";
 import { useDispatch } from "react-redux";
 import { insert } from "../../../store/userSlice";
 import Cookies from 'universal-cookie';
+import { cookieHandler } from "../../../utils/cookie/cookieHandler";
+import Alert from "../../../utils/alert/Alert";
+import GoogleLogin from "../sections/googleLogin";
 const cookies = new Cookies();
-
 const Login = () => {
   const navigate = useNavigate()
   const dispatch=useDispatch()
@@ -15,23 +16,17 @@ const Login = () => {
   const [loginError,setLoginError]=useState(false)
   
   const formSubmit = async (data:any) => {
-    console.log("called");
-    
-    try {
       const res = await LOGIN_API(data)
+      console.log(">>>>res>>>",res)
       if(res?.status === 200){
         dispatch(insert(res.data.user))
-        cookies.set('findx',res.data.token, { path: '/' })
+        cookieHandler().setCookie('findx',res.data.token)
         navigate("/home")
       }else{
-        navigate('/login')
+        setLoginError(true)
       }
       // Handle the response or perform any necessary actions
-    } catch (error) {
-      console.log(error)
-      setLoginError(true)
-      // Handle any errors that occur during the API call
-    }
+ 
 
   }
   return (
@@ -42,9 +37,8 @@ const Login = () => {
             <div className="self-center text-xl font-light text-gray-600 sm:text-2xl">
               Login To Your Account
             </div>
-            {loginError && <p className="text-red-500">Invalid user</p>}
             <div className=" item-center">
-            <GoogleSignup/>
+            <GoogleLogin/>
             </div>
             <div className="">
               <form onSubmit={handleSubmit(formSubmit)}>
@@ -123,6 +117,7 @@ const Login = () => {
               </Link>
             </div>
           </div>
+          {loginError && <Alert color="orange" message="invalied phone or password"/>}
         </div>
       </div>
     </div>

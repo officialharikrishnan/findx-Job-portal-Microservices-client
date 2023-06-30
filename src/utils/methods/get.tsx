@@ -14,6 +14,9 @@ export const getProfile =async () => {
         console.log(e)
     }
 }
+
+/************** HR API *****************/
+
 export const getProfile_hr =async () => {
   try{
       return await Axios().get("/api/hr/profile")
