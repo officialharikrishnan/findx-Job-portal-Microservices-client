@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { insert } from "../../../store/userSlice";
 import Cookies from 'universal-cookie';
 import { useState } from "react";
-import Alert from "../../../utils/alert/Alert";
+import Alert from "../../../utils/custom/Alert";
 
 const cookies = new Cookies();
 interface Store {

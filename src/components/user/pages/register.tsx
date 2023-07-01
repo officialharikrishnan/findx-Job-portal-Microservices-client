@@ -8,7 +8,8 @@ import { useState } from "react";
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
 import { app } from "../../../config/firebase";
 import { createUser } from "../../../store/tempUserSlice";
-import Alert from "../../../utils/alert/Alert";
+import Alert from "../../../utils/custom/Alert";
+import useFirebaseMobileOTP from "../../../utils/custom/firebaseAuth";
 const Register = () => {
   const auth = getAuth(app);
   const appVerifier = window.recaptchaVerifier;
@@ -17,12 +18,13 @@ const Register = () => {
   const [phone,setPhone]=useState('')
   const [alert,setAlert]=useState(false)
   const {handleSubmit,register,errors} = useValidate()
+  const {sendOTP} = useFirebaseMobileOTP()
   const formSubmit =async (data:RegisterData) => {
     const user:any = await USER_EXIST_CHECK(data)
     console.log(user)
     if(!user.data.userExist){
       dispatch(createUser(data))
-      onSignUp()
+      sendOTP(phone,'verify')
     }else{
       // alert
       setAlert(true)
@@ -30,44 +32,7 @@ const Register = () => {
     }
 
   }
-  function onCaptchaVerify() {
-    if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-            'size': 'visible',
-            'callback': (response:any) => {
-                onSignUp()
-                // reCAPTCHA solved, allow signInWithPhoneNumber.
-                // ...
-            },
-            'expired-callback': () => {
-                // Response expired. Ask user to solve reCAPTCHA again.
-                // ...
-            }
-        }, auth);
-    }
-}
-
- function onSignUp() {
-  // e.preventDefault()
-  onCaptchaVerify()
-  console.log(phone,"phone>>>")
-  const appVerify = window.recaptchaVerifier
-
-    const phoneNumber = `+91${phone}`
   
-  signInWithPhoneNumber(auth, phoneNumber, appVerify)
-      .then((confirmationResult) => {
-          // SMS sent. Prompt user to type the code from the message, then sign the
-          // user in with confirmationResult.confirm(code).
-          window.confirmationResult = confirmationResult;
-          navigate('/verify')
-          // ...
-      }).catch((error) => {
-          console.log(error);
-          // Error; SMS not sent
-          // ...
-      });
- }
 
   return (
     <div>

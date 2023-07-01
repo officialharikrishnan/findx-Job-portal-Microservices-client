@@ -5,7 +5,7 @@ import { HR_EXIST_CHECK } from "../../../utils/methods/post";
 import { app } from "../../../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
-import Alert from "../../../utils/alert/Alert";
+import Alert from "../../../utils/custom/Alert";
 import { useDispatch } from "react-redux";
 import { createHr } from "../../../store/tempHrSlice";
 import GoogleSignupHr from "../sections/hrGoogleReg";

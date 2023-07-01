@@ -7,7 +7,7 @@ import { GOOGLE_LOG_API } from "../../../utils/methods/post";
 import { insert } from "../../../store/userSlice";
 import { cookieHandler } from "../../../utils/cookie/cookieHandler";
 import { useState } from "react";
-import Alert from "../../../utils/alert/Alert";
+import Alert from "../../../utils/custom/Alert";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 

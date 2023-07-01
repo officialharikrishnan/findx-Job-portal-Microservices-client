@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { insert } from "../../../store/userSlice";
 import Cookies from 'universal-cookie';
 import { cookieHandler } from "../../../utils/cookie/cookieHandler";
-import Alert from "../../../utils/alert/Alert";
+import Alert from "../../../utils/custom/Alert";
 import GoogleLogin from "../sections/googleLogin";
 const cookies = new Cookies();
 const Login = () => {
@@ -90,9 +90,10 @@ const Login = () => {
                 </div>
                 <div className="flex items-center mb-6 -mt-4">
                   <div className="flex ml-auto">
+                    
                     <Link
-                      to={"/"}
-                      className="inline-flex text-xs font-thin text-gray-500 sm:text-sm dark:text-gray-100 hover:text-gray-700 dark:hover:text-white"
+                      to={"/forgot"}
+                      className="inline-flex text-xs font-thin text-gray-500 sm:text-sm  hover:text-gray-700 dark:hover:text-gray-900"
                     >
                       Forgot Your Password?
                     </Link>
@@ -117,7 +118,7 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          {loginError && <Alert color="orange" message="invalied phone or password"/>}
+          {loginError && <Alert color="bg-orange-200" border="border-orange-500" message="invalied phone or password"/>}
         </div>
       </div>
     </div>

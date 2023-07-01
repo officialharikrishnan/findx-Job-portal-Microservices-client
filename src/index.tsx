@@ -15,6 +15,7 @@ import Otp from "./components/user/pages/otp";
 import HrDashboard from "./components/hr/pages/hrDashboard";
 import HrOtp from "./components/hr/pages/otp";
 import HrProfileComplete from "./components/hr/pages/hrProfileComplete";
+import UpdatePassword from "./components/user/pages/updatePassword";
 const appRouter = createBrowserRouter([
   {
     path: "/login",
@@ -35,6 +36,10 @@ const appRouter = createBrowserRouter([
   {
     path:'/details',
     element:<ProfileComplete/>
+  },
+  {
+    path:'/forgot',
+    element:<UpdatePassword/>
   },
   {
     path:"hr-login",

@@ -52,6 +52,14 @@ export const USER_EXIST_CHECK = async (data:any)=>{
 
     }
 }
+export const ACCOUNT_FIND = async (data:any)=>{
+    try{
+        return Axios().post('/api/user/findAcc',data)
+    }catch(e){
+
+    }
+}
+
 
 /*********************  HR API  ************************/
 

@@ -4,7 +4,7 @@ import {
   useValidate,
 } from "../../../formValidation/hrRegisterViaEmail";
 import { Link, useNavigate } from "react-router-dom";
-import Alert from "../../../utils/alert/Alert";
+import Alert from "../../../utils/custom/Alert";
 import { useDispatch, useSelector } from "react-redux";
 import {  HR_GOOGLE_REG_API } from "../../../utils/methods/post";
 import { insertHr } from "../../../store/hrSlice";
