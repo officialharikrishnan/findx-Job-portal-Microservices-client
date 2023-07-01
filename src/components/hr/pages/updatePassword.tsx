@@ -1,10 +1,9 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { Button, Spinner } from "flowbite-react";
-import Info from "../../../utils/custom/Info";
-import { ACCOUNT_FIND } from "../../../utils/methods/post";
+import {  HR_ACCOUNT_FIND } from "../../../utils/methods/post";
 import Alert from "../../../utils/custom/Alert";
 import useFirebaseMobileOTP from "../../../utils/custom/firebaseAuth";
-import { UPDATE_PASSWORD } from "../../../utils/methods/patch";
+import { HR_UPDATE_PASSWORD } from "../../../utils/methods/patch";
 import { useNavigate } from "react-router-dom";
 const UpdatePassword = () => {
   const [email, setEmail] = useState("");
@@ -141,7 +140,7 @@ const UpdatePassword = () => {
 
   const findAccound = async () => {
     dispatch({ type: "find-on" });
-    const res = await ACCOUNT_FIND({ email: email });
+    const res = await HR_ACCOUNT_FIND({ email: email });
     console.log(res);
     if (res?.status === 200) {
       setAccoount(res?.data);
@@ -163,7 +162,7 @@ const UpdatePassword = () => {
     }
   };
   const otpVerify = () => {
-    dispatch({type:"invalied-off"})
+    dispatch({type:'invalied-off'})
     dispatch({type:"verify-on"})
     window.confirmationResult
       .confirm(otp)
@@ -179,11 +178,11 @@ const UpdatePassword = () => {
   };
   const changePasswordHandler = async () => {
     dispatch({ type: "submit" });
-    const res = await UPDATE_PASSWORD({ email, password });
+    const res = await HR_UPDATE_PASSWORD({ email, password });
     if (res?.status === 200) {
         dispatch({type:'success'})
         setTimeout(()=>{
-            navigate("/user/login");
+            navigate("/hr/login");
         },2000)
     } else {
       dispatch({ type: "error-on" });
@@ -308,7 +307,13 @@ const UpdatePassword = () => {
                         className="rounded-l border-none p-1"
                         onClick={otpVerify}
                       >
-                        
+                        {state.verify && (
+                          <>
+                            {" "}
+                            <Spinner aria-label="Spinner button example" />
+                            <span className="pl-3">verifying...</span>
+                          </>
+                        )}
                         {state.otpVerified && (
                           <>
                             {" "}
@@ -326,13 +331,6 @@ const UpdatePassword = () => {
                               ></path>
                             </svg>
                             <span className="pl-3">Verified</span>
-                          </>
-                        )}
-                        {state.verify && (
-                          <>
-                            {" "}
-                            <Spinner aria-label="Spinner button example" />
-                            <span className="pl-3">verifying...</span>
                           </>
                         )}
                         {!state.verify && !state.otpVerified && (

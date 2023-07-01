@@ -34,7 +34,7 @@ function GoogleSignInHr() {
           if (res && res.status === 200) {
             dispatch(insertHr(res.data.user));
             cookieHandler().setCookie("findx-hr", res.data.token);
-            navigate("/hr/hr-dashboard");
+            navigate("/hr/dashboard");
           } else {
             setAlert(true);
             console.log("user not exist");

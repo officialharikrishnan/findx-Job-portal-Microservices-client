@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../utils/methods/get";
 import axios from "axios";
 import { insert } from "../../../store/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 interface Store{
   user:{
     user:{}
@@ -27,7 +27,7 @@ const Profile = () => {
       const data = await  getProfile()
       console.log(data)
       if(data?.status !== 200){
-        navigate('/hr/login')
+        navigate('/user/login')
       }else{
         dispatch(insert(data?.data))
       }
@@ -79,12 +79,13 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex justify-center mt-2">
-          <button
+          <Link to={"/user/view-profile"}><button
             type="button"
             className="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
           >
             View Profile
           </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -3,9 +3,22 @@ import { RegisterData as HRReg } from "../../formValidation/hrRegister";
 import { RegisterData as HRLog } from "../../formValidation/hrLogin";
 import { Axios } from "../baseUrl/api";
 
+/**************** USER API ****************/
+
 export const UPDATE_PASSWORD = async (data:any)=>{
     try{
         return Axios().patch('/api/user/updatePass',data)
+    }catch(e){
+
+    }
+}
+
+
+/**************** HR API ****************/
+
+export const HR_UPDATE_PASSWORD = async (data:any)=>{
+    try{
+        return Axios().patch('/api/hr/updatePass',data)
     }catch(e){
 
     }

@@ -7,6 +7,7 @@ import App from "./App";
 import Otp from "./components/user/pages/otp";
 import ProfileComplete from "./components/user/pages/profileComplete";
 import UpdatePassword from "./components/user/pages/updatePassword";
+import UpdateProfile from "./components/user/pages/updateProfile";
 
 const UserRoutes = () => {
 
@@ -22,6 +23,7 @@ const UserRoutes = () => {
         <Route path="/details" element={<ProfileComplete/>}/>
         <Route path="/forgot" element={<UpdatePassword/>}/>
         <Route path="/view-profile" element={<ViewProfile/>}/>
+        <Route path="/update-profile" element={<UpdateProfile/>}/>
     </Routes>
   </>
 };

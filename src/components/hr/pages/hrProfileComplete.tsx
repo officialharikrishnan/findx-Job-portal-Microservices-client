@@ -28,7 +28,7 @@ const HrProfileComplete = () => {
     } else {
       dispatch(insertHr(res.data));
       cookieHandler().setCookie("findx-hr", res.data.token);
-      navigate("/hr/hr-dashboard");
+      navigate("/hr/dashboard");
     }
   };
   return (

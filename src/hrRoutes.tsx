@@ -5,16 +5,18 @@ import HrRegister from './components/hr/pages/hrRegister'
 import HrProfileComplete from './components/hr/pages/hrProfileComplete'
 import HrOtp from './components/hr/pages/otp'
 import HrDashboard from './components/hr/pages/hrDashboard'
+import UpdatePassword from './components/hr/pages/updatePassword'
 
 const HrRoutes = () => {
   return (
     <div>
         <Routes>
-            <Route path='/hr-login' element={<HrLogin/>}/>
-            <Route path='/hr-register' element={<HrRegister/>}/>
-            <Route path='/hr-details' element={<HrProfileComplete/>}/>
-            <Route path='/hr-verify' element={<HrOtp/>}/>
-            <Route path='/hr-dashboard' element={<HrDashboard/>}/>
+            <Route path='/login' element={<HrLogin/>}/>
+            <Route path='/register' element={<HrRegister/>}/>
+            <Route path='/forgot' element={<UpdatePassword/>}/>
+            <Route path='/details' element={<HrProfileComplete/>}/>
+            <Route path='/verify' element={<HrOtp/>}/>
+            <Route path='/dashboard' element={<HrDashboard/>}/>
         </Routes>
     </div>
   )

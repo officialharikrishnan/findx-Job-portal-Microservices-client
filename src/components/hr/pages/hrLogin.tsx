@@ -18,7 +18,7 @@ const HrLogin = () => {
       if(res?.status === 200){
         dispatch(insertHr(res.data.hr))
         cookies.set('findx-hr',res.data.token, { path: '/' })
-        navigate("/hr/hr-dashboard")
+        navigate("/hr/dashboard")
       }else{
         setSubmit(false)
       }
@@ -115,12 +115,12 @@ const HrLogin = () => {
                     Please wait...
                   </button>}
                 <div className="flex justify-evenly mt-5">
-                  <a
-                    href="#"
-                    className="w-full text-center font-medium text-gray-500"
-                    >Recover password!</a>
                   <Link
-                  to={"/hr/hr-register"}
+                    to={"/hr/forgot"}
+                    className="w-full text-center font-medium text-gray-500"
+                    >Recover password!</Link>
+                  <Link
+                  to={"/hr/register"}
                     className="w-full text-center font-medium text-gray-500"
                     >Register!</Link >
                 </div>

@@ -22,11 +22,15 @@ const Profile = () => {
     getUser();
   }, []);
   const getUser = async () => {
-    const data = await getProfile_hr();
-    if (data?.status !== 200) {
-      navigate("/hr/hr-login");
-    } else {
-      dispatch(insertHr(data?.data));
+    try {
+      const data = await getProfile_hr();
+      if (data?.status !== 200) {
+        navigate("/hr/login");
+      } else {
+        dispatch(insertHr(data?.data));
+      }
+    } catch (e) {
+      navigate("/hr/login");
     }
   };
   // }

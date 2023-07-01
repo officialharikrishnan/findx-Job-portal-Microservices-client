@@ -59,6 +59,14 @@ export const ACCOUNT_FIND = async (data:any)=>{
 
     }
 }
+export const UPDATE_PROFILE = async (data:any)=>{
+    console.log(data)
+    try{
+        return Axios().post('/api/profile/create',data)
+    }catch(e){
+
+    }
+}
 
 
 /*********************  HR API  ************************/
@@ -96,6 +104,13 @@ export const HR_GOOGLE_REG_API = async (data:any)=>{
 export const HR_GOOGLE_LOG_API = async (data:any)=>{
     try{
         return Axios().post('/api/hr/googleLogin',data)
+    }catch(e){
+
+    }
+}
+export const HR_ACCOUNT_FIND = async (data:any)=>{
+    try{
+        return Axios().post('/api/hr/findAcc',data)
     }catch(e){
 
     }

@@ -1,6 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../../../utils/methods/get";
+import { Link, useNavigate } from "react-router-dom";
+import { insert } from "../../../store/userSlice";
+interface Store {
+  user: {
+    user: {};
+  };
+}
+type Data = {
+  firstName?: string;
+  lastName?:string
+  email?: string;
+  phone?: any;
+};
 
 const ViewProfile = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+  const data: Data = useSelector((store: Store) => store.user.user);
+  useEffect( ()=>{
+    getUser()
+  },[])
+  const getUser = async ()=>{
+    const data = await  getProfile()
+    console.log(data)
+    if(data?.status !== 200){
+      navigate('/user/login')
+    }else{
+      dispatch(insert(data?.data))
+    }
+
+  }
+    console.log(data)
   return (
     <div>
       <div className="p-16">
@@ -13,17 +45,12 @@ const ViewProfile = () => {
               <div>
                 {" "}
                 <p className="font-bold text-gray-700 text-xl">22</p>{" "}
-                <p className="text-gray-400">Friends</p>{" "}
+                <p className="text-gray-400">Applied</p>{" "}
               </div>{" "}
               <div>
                 {" "}
                 <p className="font-bold text-gray-700 text-xl">10</p>{" "}
-                <p className="text-gray-400">Photos</p>{" "}
-              </div>{" "}
-              <div>
-                {" "}
-                <p className="font-bold text-gray-700 text-xl">89</p>{" "}
-                <p className="text-gray-400">Comments</p>{" "}
+                <p className="text-gray-400">Saved</p>{" "}
               </div>{" "}
             </div>{" "}
             <div className="relative">
@@ -45,23 +72,22 @@ const ViewProfile = () => {
               </div>{" "}
             </div>{" "}
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-              <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                {" "}
-                Connect
-              </button>{" "}
-              <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                {" "}
-                Message
-              </button>{" "}
+              <Link to={"/user/update-profile"}><button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                Update Profile
+              </button>
+              </Link>
+              
             </div>{" "}
           </div>{" "}
           <div className="mt-20 text-center border-b pb-12">
-            {" "}
+            <div>
+
             <h1 className="text-4xl font-medium text-gray-700">
-              Jessica Jones,{" "}
-              <span className="font-light text-gray-500">27</span>
-            </h1>{" "}
-            <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>{" "}
+              {data && data.firstName} &nbsp;{data && data.lastName}
+              <span className="font-light text-gray-700"></span>
+            </h1>
+            </div>
+            <p className="font-light text-gray-600 mt-3">{data && data.email}</p>{" "}
             <p className="mt-8 text-gray-500">
               Solution Manager - Creative Tim Officer
             </p>{" "}
