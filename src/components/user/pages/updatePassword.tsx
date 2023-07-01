@@ -160,7 +160,7 @@ const UpdatePassword = () => {
     if (res?.status === 200) {
         dispatch({type:'success'})
         setTimeout(()=>{
-            navigate("/login");
+            navigate("/user/login");
         },2000)
     } else {
       dispatch({ type: "error-on" });

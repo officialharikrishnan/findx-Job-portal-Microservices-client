@@ -7,7 +7,7 @@ const Header = () => {
   const navigate = useNavigate()
   async function logoutHandler(e:any){
     cookieHandler().removeCookie('findx')
-    navigate('/login')
+    navigate('/user/login')
   }
   return (
     <div>

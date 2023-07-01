@@ -28,7 +28,7 @@ const HrProfileComplete = () => {
     } else {
       dispatch(insertHr(res.data));
       cookieHandler().setCookie("findx-hr", res.data.token);
-      navigate("/hr-dashboard");
+      navigate("/hr/hr-dashboard");
     }
   };
   return (
@@ -169,12 +169,7 @@ const HrProfileComplete = () => {
                       </div>
                     </button>
                     <div className="flex justify-evenly mt-5">
-                      <Link
-                        to={"/hr-login"}
-                        className="w-full text-center font-medium text-gray-500"
-                      >
-                        Already have an account?
-                      </Link>
+                     
                     </div>
                   </div>
                 </form>

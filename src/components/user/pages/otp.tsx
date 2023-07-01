@@ -30,7 +30,7 @@ const Otp = () => {
           dispatch(insert(res.data))
         cookieHandler().setCookie('findx',res.data.token)
 
-          navigate("/home")
+          navigate("/user/home")
         }else{
           
         }

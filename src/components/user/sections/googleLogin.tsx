@@ -31,7 +31,7 @@ function GoogleLogin() {
         if(res && res.status === 200){
             dispatch(insert(res.data.user))
             cookieHandler().setCookie('findx',res.data.token)
-            navigate("/home")
+            navigate("/user/home")
         }else{
             setAlert(true)
             console.log("user not exist")

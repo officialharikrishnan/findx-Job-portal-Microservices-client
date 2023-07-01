@@ -39,13 +39,13 @@ const LandingPage = () => {
                   </div>
                   <div className="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0">
                     <Link
-                      to={"/login"}
+                      to={"/user/login"}
                       className="w-full px-6 py-2 mr-0 text-gray-700 md:px-0 lg:pl-2 md:mr-4 lg:mr-5 md:w-auto"
                     >
                       Sign In
                     </Link>
                     <Link
-                      to={"/hr-login"}
+                      to={"/hr/hr-login"}
                       className="inline-flex items-center w-full px-6 py-3 text-sm font-medium leading-4 text-white bg-sky-600 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-sky-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-sky-600"
                     >
                       Hire
@@ -69,15 +69,13 @@ const LandingPage = () => {
             <div className="flex flex-col items-center mt-12 text-center">
               <span className="relative inline-flex w-full md:w-auto">
                 <Link
-                  to={"/register"}
+                  to={"/user/register"}
                   className="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-sky-600 border border-transparent rounded-full md:w-auto hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600"
                 >
                   Register Now
                 </Link>
               </span>
-              <a href="#" className="mt-3 text-sm text-indigo-500">
-                Learn More
-              </a>
+              
             </div>
           </div>
         </div>

@@ -29,7 +29,7 @@ const HrOtp = () => {
         if(res?.status === 200){
           dispatch(insertHr(res.data))
         cookieHandler().setCookie('findx-hr',res.data.token)
-          navigate("/hr-dashboard")
+          navigate("/hr/hr-dashboard")
         }else{
           
         }

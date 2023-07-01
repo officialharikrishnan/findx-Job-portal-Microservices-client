@@ -26,7 +26,7 @@ const ProfileComplete = () => {
       if(res?.data.UserExist === false){
         dispatch(insert(res.data.user))
         cookies.set('findx',res.data.token, { path: '/' })
-        navigate("/home")
+        navigate("/user/home")
       }else{
         console.log("else called")
         setAlert(true)

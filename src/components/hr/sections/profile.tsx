@@ -24,7 +24,7 @@ const Profile = () => {
   const getUser = async () => {
     const data = await getProfile_hr();
     if (data?.status !== 200) {
-      navigate("/hr-login");
+      navigate("/hr/hr-login");
     } else {
       dispatch(insertHr(data?.data));
     }

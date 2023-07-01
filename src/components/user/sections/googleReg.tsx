@@ -24,7 +24,7 @@ function GoogleSignup() {
         const user = result.user;
         console.log(user,"user>>>")
         dispatch(insertEmail(user.email))
-        navigate("/details");
+        navigate("/user/details");
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })
