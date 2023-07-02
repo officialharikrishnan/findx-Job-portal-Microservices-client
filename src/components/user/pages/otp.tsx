@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { REGISTER_API } from "../../../utils/methods/post";
 import { insert } from "../../../store/userSlice";
@@ -13,12 +13,35 @@ interface tempUSer{
 }
 
 
+
 const Otp = () => {
+  const { sendOTP } = useFirebaseMobileOTP()
   const userData:RegisterData = useSelector((store:tempUSer) => store.tempUser.user);
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [otp,setOtp]=useState('')
-  console.log("before>>>",userData)
+const [seconds, setSeconds] = useState(20);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      console.log(seconds)
+      if (seconds === 0) {
+      sendOTP(userData.phone)
+          clearInterval(interval);
+      }
+    }, 1000);
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, [seconds]);
+
+
+
+
   function onOtpVerify(e:any) {
     e.preventDefault()
     console.log("verify",userData)
@@ -44,6 +67,8 @@ const Otp = () => {
         console.log(err, "fail");
     })
   }
+
+
   return (
     <div>
       <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
@@ -79,14 +104,11 @@ const Otp = () => {
                         </button>
                       </div>
   
-                      {/* <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
-                        <p>Didn't recieve code?</p>
-                        <p
-                          className="flex flex-row items-center text-blue-600"
-                        >
-                          Resend
-                        </p>
-                      </div> */}
+                      <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
+                       {seconds && <p>OTP will resend in {seconds}s</p>}
+                        
+                      </div>
+                      <div id="recaptcha-container"></div>
                     </div>
                   </div>
                 </form>

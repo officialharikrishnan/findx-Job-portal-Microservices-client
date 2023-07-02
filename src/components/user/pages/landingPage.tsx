@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../sections/footer";
+import { useMediaQuery } from 'react-responsive'
 
 
 const LandingPage = () => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+  const isBigScreen = useMediaQuery({ query: '(min-width: 767px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
+
   return (
     <div>
       <section className="w-full px-6 pb-12 antialiased bg-white">
@@ -12,7 +18,7 @@ const LandingPage = () => {
             className="relative z-50 h-24 select-none"
             x-data="{ showMenu: false }"
           >
-            <div className="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2">
+            <div className="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-gray-300 md:overflow-visible lg:justify-center sm:px-4 md:px-2">
               <div className="flex items-center justify-start w-1/4 h-full pr-4">
                 <Link to={"/"} className="inline-block py-4 md:py-0">
                   <span className="p-1 text-xl font-black leading-none text-gray-900">
@@ -51,9 +57,18 @@ const LandingPage = () => {
                       Hire
                     </Link>
                   </div>
+                  
                 </div>
               </div>
             </div>
+            {isTabletOrMobile && !isBigScreen  && <div className="w-full flex justify-end"><Link
+                      to={"/hr/login"}
+                      className="inline-flex items-center rounded px-6 py-3 text-sm font-medium leading-4 text-white bg-sky-600 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-sky-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-sky-600"
+                    >
+                      Hire
+                    </Link>
+                    </div>
+                    }
           </nav>
 
           <div className="container max-w-lg px-4 py-32 mx-auto text-left md:max-w-none md:text-center">
@@ -67,19 +82,71 @@ const LandingPage = () => {
               1000+ jobs listed here! Your dream job is waiting
             </div>
             <div className="flex flex-col items-center mt-12 text-center">
-              <span className="relative inline-flex w-full md:w-auto">
+              <div className="relative inline-flex w-full md:w-auto">
                 <Link
                   to={"/user/register"}
-                  className="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-sky-600 border border-transparent rounded-full md:w-auto hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600"
+                  className=" inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-sky-600 border border-transparent rounded-full md:w-auto hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600"
                 >
                   Register Now
                 </Link>
-              </span>
+                <div className="absolute top-2 right-0 -mr-1 -mt-1 w-4 h-4 rounded-full bg-sky-300 animate-ping"></div>
+    <div className="absolute top-2 right-0 -mr-1 -mt-1 w-4 h-4 rounded-full bg-sky-300"></div>
+              </div>
               
             </div>
           </div>
         </div>
+
       </section>
+      <div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-primary opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
+<div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-secondary opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
+<div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-success opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+   >Loading...</span>
+</div>
+<div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-danger opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
+<div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-warning opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
+<div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-info opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
+<div
+  className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-neutral-100 opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
       <section className="bg-white border-b py-8">
         <div className="container max-w-5xl mx-auto m-8">
           <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
@@ -95,8 +162,7 @@ const LandingPage = () => {
                 Find The Perfect Job
               </h3>
               <p className="text-gray-600 mb-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                at ipsum eu nunc commodo posuere et sit amet ligula.
+              Start by reflecting on your skills, interests, and values. Understand your strengths, passions, and what motivates you in a work environment. This will help you align your job search with roles that suit your profile.
               </p>
             </div>
             <div className="w-full sm:w-1/2 p-6">
@@ -538,8 +604,7 @@ const LandingPage = () => {
                   Make Connections
                 </h3>
                 <p className="text-gray-600 mb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+                Making connections is an essential aspect of personal and professional growth. It involves building relationships and establishing meaningful connections with others. These connections can provide numerous benefits, including opportunities for collaboration, learning, mentorship, and personal development.
                   <br />
                   <br />
                 </p>

@@ -33,7 +33,7 @@ const HrRegister = () => {
   
   return (
     <div className="">
-      <div className="antialiased bg-gradient-to-br from-sky-100 to-white">
+      <div className="antialiased bg-gradient-to-br from-sky-100 to-white pt-10">
         <div className="container px-6  mx-auto">
           <div className="flex flex-col text-center md:text-left md:flex-row h-full justify-evenly md:items-center">
             <div className="flex flex-col w-full">
@@ -142,7 +142,7 @@ const HrRegister = () => {
                     <input
                       type="password"
                       id="confirmPassword"
-                      placeholder="Please insert your password"
+                      placeholder="Confirm"
                       className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                       {...register('confirmPassword')}
                     />

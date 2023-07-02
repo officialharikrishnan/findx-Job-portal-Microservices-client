@@ -24,6 +24,7 @@ const Login = () => {
       
       dispatch(insert(res.data.user));
       cookieHandler().setCookie("findx", res.data.token);
+      cookieHandler().setCookie("test", res.data.token);
       navigate("/user/home");
     } else {
       setSubmit(false)

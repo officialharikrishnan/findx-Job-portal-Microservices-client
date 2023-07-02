@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { cookieHandler } from "../../../utils/cookie/cookieHandler";
 import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
-  
+  const {removeCookie}  = cookieHandler()
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
   async function logoutHandler(e:any){
-    cookieHandler().removeCookie('findx')
-    navigate('/user/login')
+    await removeCookie('findx').then(()=>{
+      navigate('/user/login')
+    }).catch(()=>{
+      console.log("cookie not cleared")
+    })
   }
   return (
     <div>
@@ -52,31 +55,15 @@ const Header = () => {
               logout
             </button>
           </nav>
-          {/* Avatar */}
-          <div className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
+          
           {/* Burger icon standard */}
           <button
-            className="md:hidden rounded-md active:outline-none focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
+            className="md:hidden rounded-md active:outline-none focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             onClick={() => setIsOpen(!isOpen)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 rounded-md text-gray-300 bg-gradient-to-br from-transparent to-transparent hover:text-white hover:from-pink-500 hover:to-yellow-500"
+              className="h-8 w-8 rounded-md text-gray-300 bg-gradient-to-br from-transparent to-transparent hover:text-white hover:from-blue-500 hover:to-sky-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -98,26 +85,26 @@ const Header = () => {
               href="#link"
               className="block px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700"
             >
-              Solutions
+              Home
             </a>
             <a
               href="#link"
               className="block px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700"
             >
-              Prices
+              Jobs
             </a>
             <a
               href="#link"
               className="block px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700"
             >
-              About
+              Profile
             </a>
-            <a
-              href="#link"
+            <button
+              onClick={e=>logoutHandler(e)}
               className="block px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700"
             >
-              Contact
-            </a>
+              Logout
+            </button>
           </div>
         )}
       </header>

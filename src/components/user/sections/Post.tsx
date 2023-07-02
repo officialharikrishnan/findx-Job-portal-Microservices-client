@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { getAllPost } from "../../api/methods/get";
 import { Link } from "react-router-dom";
 import { getPosts } from "../../../utils/methods/get";
@@ -13,6 +13,7 @@ type Post = {
 };
 function Post() {
   const [posts, setPosts] = useState([]);
+  const [count, setCount] = useState(["", "", "", "", "", "", "", "", "", ""]);
   // useEffect(() => {
   //   getAllPost()
   //     .then((res: any) => {
@@ -29,71 +30,55 @@ function Post() {
 
   return (
     <div className="overflow-auto max-h-screen">
-      <div className="container p-5 overflow-auto max-h-between mt-4 flex flex-row">
-        <div className="min-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-md border-2 ">
-          <div className="flex items-center">
-            <img
-              src="https://stackdiary.com/140x100.png"
-              alt="Author"
-              className="hidden object-cover w-10 h-10 rounded-full sm:block"
-            />
-            <div className="flex flex-col text-left ml-5">
-              <Link to={"/"} className="font-bold text-gray-700 cursor-pointer">
-                MERN Stack Developer
-              </Link>
-              <span className="text-sm font-light text-gray-200 dark:text-gray-900">
-                12-10-22
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-2">
-            <p className="mt-5 text-gray-600 text-left max-w-sm  mb-10">
-              Looking for skilled mern stack developer Looking for skilled mern stack developer Looking for skilled mern stack developer
-            </p>
-          </div>
-          <div>
-            <img src="" alt="" />
-          </div>
-          <div className="flex items-center justify-between mt-4">
-            
-            <button className="px-4 rounded text-white bg-sky-400 hover:bg-sky-500">
-              View
-            </button>
-          </div>
-        </div>
-        <div className="min-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-md border-2">
-          <div className="flex items-center">
-            <img
-              src="https://stackdiary.com/140x100.png"
-              alt="Author"
-              className="hidden object-cover w-10 h-10 rounded-full sm:block"
-            />
-            <div className="flex flex-col text-left ml-5">
-              <Link to={"/"} className="font-bold text-gray-700 cursor-pointer">
-                MERN Stack Developer
-              </Link>
-              <span className="text-sm font-light text-gray-200 dark:text-gray-900">
-                12-10-22
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-2">
-            <p className="mt-5 text-gray-600 text-left max-w-sm  mb-10">
-              Looking for skilled mern stack developer Looking for skilled mern stack developer Looking for skilled mern stack developer
-            </p>
-          </div>
-          <div>
-            <img src="" alt="" />
-          </div>
-          <div className="flex items-center justify-between mt-4">
-            
-            <button className="px-4 rounded text-white bg-sky-400 hover:bg-sky-500">
-              View
-            </button>
-          </div>
-        </div>
+      <div className="flex flex-wrap justify-center">
+        {count &&
+          count.map(() => {
+            return (
+              <div className="p-4 max-w-sm">
+                <div className="flex rounded-lg h-full bg-sky-400 p-8 flex-col">
+                  <div className="flex items-center mb-3">
+                    <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
+                      <img
+                        src="https://ibsintelligence.com/wp-content/uploads/2021/09/TCS.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <h2 className="text-white text-lg font-medium">
+                        MERN Stack developr
+                      </h2>
+                      <p className="text-gray-500 text-lg">Tata Consultancy Services</p>
+                      <p className="text-gray-500 text-md">Kochi</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between flex-grow">
+                    <p className="leading-relaxed text-left text-white">
+                      The candidate should have a strong knowledge of Node,
+                      React, and MongoDB. Responsibilities: Design and develop
+                      high-performance web applications using the MERN stack.
+                    </p>
+                    <Link
+                      to={"/user/home"}
+                      className="mt-3 text-black hover:text-blue-600 inline-flex items-center"
+                    >
+                      View
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        className="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

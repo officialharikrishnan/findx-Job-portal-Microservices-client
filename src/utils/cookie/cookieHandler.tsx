@@ -10,8 +10,9 @@ export const cookieHandler = () => {
     return cookies.get(key);
   };
 
-  const removeCookie = (key: string) => {
-    return cookies.remove(key);
+  const removeCookie =async (key: string) => {
+    console.log(key)
+    return cookies.remove(key,{path:'/'});
   };
   return {
     setCookie,

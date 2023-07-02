@@ -1,99 +1,63 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Jobs = () => {
-  return (
-    <div className='p-10'>
-    <section className="w-full h-full bg-gradient-to-br lg:ml-5">
-        <h1 className="text-center  font-bold text-2xl">Jobs </h1>
-    
-        <div className="grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 my-10">
-            <div className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
-                <img className="h-56 lg:h-60 w-full object-cover" src="https://images.unsplash.com/photo-1523289217630-0dd16184af8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8d29tZW4lMjBlbXBvd2VybWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className="p-3">
-                    <span className="text-sm text-primary">November 19, 2022</span>
-                    <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                    International Women's Day 2022: Date, history, significance, theme this year
-                    </h3>
-                    <p className="paragraph-normal text-gray-600">
-                    Happy Women's Day 2022: Read on to know all about the history and significance...
-                    </p>
-                    <a className="mt-3 block" href="#">Read More </a>
-                </div>
-            </div>
-    
-            <div className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
-                <img className="h-56 lg:h-60 w-full object-cover" src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHdvbWVuJTIwZW1wb3dlcm1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className="p-3">
-                    <span className="text-sm text-primary">November 19, 2022</span>
-                    <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                    International Women's Day 2022: Date, history, significance, theme this year
-                    </h3>
-                    <p className="paragraph-normal text-gray-600">
-                    Happy Women's Day 2022: Read on to know all about the history and significance...
-                    </p>
-                    <a className="mt-3 block" href="#">Read More </a>
-                </div>
-            </div>
-    
-            <div className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
-                <img className="h-56 lg:h-60 w-full object-cover" src="https://images.unsplash.com/photo-1637419450536-378d5457abb8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWVuJTIwZW1wb3dlcm1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className="p-3">
-                    <span className="text-sm text-primary">November 19, 2022</span>
-                    <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                    International Women's Day 2022: Date, history, significance, theme this year
-                    </h3>
-                    <p className="paragraph-normal text-gray-600">
-                    Happy Women's Day 2022: Read on to know all about the history and significance...
-                    </p>
-                    <a className="mt-3 block" href="#">Read More </a>
-                </div>
-            </div>
-    
-            <div className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
-                <img className="h-56 lg:h-60 w-full object-cover" src="https://images.unsplash.com/photo-1621352404112-58e2468993a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fHdvbWVuJTIwZW1wb3dlcm1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className="p-3">
-                    <span className="text-sm text-primary">November 19, 2022</span>
-                    <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                    International Women's Day 2022: Date, history, significance, theme this year
-                    </h3>
-                    <p className="paragraph-normal text-gray-600">
-                    Happy Women's Day 2022: Read on to know all about the history and significance...
-                    </p>
-                    <a className="mt-3 block" href="#">Read More </a>
-                </div>
-            </div>
-    
-            <div className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
-                <img className="h-56 lg:h-60 w-full object-cover" src="https://images.unsplash.com/photo-1607868894064-2b6e7ed1b324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHdvbWVuJTIwZW1wb3dlcm1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className="p-3">
-                    <span className="text-sm text-primary">November 19, 2022</span>
-                    <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                    International Women's Day 2022: Date, history, significance, theme this year
-                    </h3>
-                    <p className="paragraph-normal text-gray-600">
-                    Happy Women's Day 2022: Read on to know all about the history and significance...
-                    </p>
-                    <a className="mt-3 block" href="#">Read More </a>
-                </div>
-            </div>
-    
-            <div className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
-                <img className="h-56 lg:h-60 w-full object-cover" src="https://images.unsplash.com/photo-1633329712176-4751f52ccc1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHdvbWVuJTIwZW1wb3dlcm1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className="p-3">
-                    <span className="text-sm text-primary">November 19, 2022</span>
-                    <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                    International Women's Day 2022: Date, history, significance, theme this year
-                    </h3>
-                    <p className="paragraph-normal text-gray-600">
-                    Happy Women's Day 2022: Read on to know all about the history and significance...
-                    </p>
-                    <a className="mt-3 block" href="#">Read More </a>
-                </div>
-            </div>
-        </div>
-        <section className="mt-4 text-center">Build with ❤️ by <a href="https://github.com/saadh393" target="_blank" rel="noreferrer">Saad Hasan </a></section>
-    </section></div>
-  )
-}
+  const [count, setCount] = useState(["", "", "", "", "", "", "", "", "", ""]);
 
-export default Jobs
+  return (
+    <div className="overflow-auto max-h-screen">
+    <div className="flex flex-wrap justify-center">
+      {count &&
+        count.map(() => {
+          return (
+            <div className="p-4 max-w-sm">
+              <div className="flex rounded-lg h-full bg-sky-400 p-8 flex-col">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
+                    <img
+                      src="https://ibsintelligence.com/wp-content/uploads/2021/09/TCS.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <h2 className="text-white text-lg font-medium">
+                      MERN Stack developr
+                    </h2>
+                    <p className="text-gray-500 text-lg">Tata Consultancy Services</p>
+                    <p className="text-gray-500 text-md">Kochi</p>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-between flex-grow">
+                  <p className="leading-relaxed text-left text-white">
+                    The candidate should have a strong knowledge of Node,
+                    React, and MongoDB. Responsibilities: Design and develop
+                    high-performance web applications using the MERN stack.
+                  </p>
+                  <Link
+                    to={"/user/home"}
+                    className="mt-3 text-black hover:text-blue-600 inline-flex items-center"
+                  >
+                    View
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  </div>
+  );
+};
+
+export default Jobs;

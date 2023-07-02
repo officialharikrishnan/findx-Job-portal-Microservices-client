@@ -6,12 +6,15 @@ import { useDispatch } from 'react-redux'
 import { insertHr } from '../../../store/hrSlice'
 import Cookies from 'universal-cookie';
 import GoogleSignInHr from '../sections/hrGoogleLogin'
+import Alert from '../../../utils/custom/Alert'
+
 const cookies = new Cookies();
 const HrLogin = () => {
   const {register,handleSubmit,errors} = useValidate()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [submit,setSubmit]=useState(false)
+  const [alert,setAlert]=useState(false)
   const formSubmit =async (data:RegisterData) => {
     setSubmit(true)
       const res =await HR_LOGIN_API(data)
@@ -21,12 +24,13 @@ const HrLogin = () => {
         navigate("/hr/dashboard")
       }else{
         setSubmit(false)
+        setAlert(true)
       }
       console.log(res)
   }
   return (
     <div>
-        <body className="antialiased bg-gradient-to-br from-sky-100 to-white">
+        <div className="antialiased bg-gradient-to-br from-sky-100 to-white pt-10">
     <div className="container px-6 mx-auto">
       <div
         className="flex flex-col text-center md:text-left md:flex-row h-screen justify-evenly md:items-center"
@@ -126,12 +130,14 @@ const HrLogin = () => {
                 </div>
               </div>
             </form>
+          {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Invalied phone or password"/>}
+
             <GoogleSignInHr/>
           </div> 
         </div>
       </div>
     </div>
-  </body>
+  </div>
 
 
 
