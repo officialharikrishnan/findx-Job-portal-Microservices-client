@@ -141,7 +141,7 @@ const UpdatePassword = () => {
 
   const findAccound = async () => {
     dispatch({ type: "find-on" });
-    const res = await ACCOUNT_FIND({ email: email });
+    const res = await ACCOUNT_FIND({ data: email });
     console.log(res);
     if (res?.status === 200) {
       setAccoount(res?.data);
@@ -179,7 +179,7 @@ const UpdatePassword = () => {
   };
   const changePasswordHandler = async () => {
     dispatch({ type: "submit" });
-    const res = await UPDATE_PASSWORD({ email, password });
+    const res = await UPDATE_PASSWORD({ email:account.email, password });
     if (res?.status === 200) {
         dispatch({type:'success'})
         setTimeout(()=>{
@@ -215,7 +215,7 @@ const UpdatePassword = () => {
                         type="email"
                         id="create-account-pseudo"
                         className=" rounded-l  flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base"
-                        placeholder="email"
+                        placeholder="Email or Phone"
                         onChange={(e) => setEmail(e.target.value)}
                       />
 

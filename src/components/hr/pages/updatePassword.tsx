@@ -140,7 +140,7 @@ const UpdatePassword = () => {
 
   const findAccound = async () => {
     dispatch({ type: "find-on" });
-    const res = await HR_ACCOUNT_FIND({ email: email });
+    const res = await HR_ACCOUNT_FIND({ data: email });
     console.log(res);
     if (res?.status === 200) {
       setAccoount(res?.data);
@@ -178,7 +178,7 @@ const UpdatePassword = () => {
   };
   const changePasswordHandler = async () => {
     dispatch({ type: "submit" });
-    const res = await HR_UPDATE_PASSWORD({ email, password });
+    const res = await HR_UPDATE_PASSWORD({ email:account.email, password });
     if (res?.status === 200) {
         dispatch({type:'success'})
         setTimeout(()=>{
