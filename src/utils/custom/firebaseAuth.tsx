@@ -32,9 +32,10 @@ const useFirebaseMobileOTP = () => {
       );
       setRecaptchaVerifier(verifier);
     }
-  }, [recaptchaVerifier]);
+  }, []);
 
   const sendOTP = async (phoneNumber: any, redirect?: string) => {
+    console.log(phoneNumber,">>> opt phone")
     if (phoneNumber.toString().substring(0, 3) !== "+91") {
       phoneNumber = "+91" + phoneNumber;
     }

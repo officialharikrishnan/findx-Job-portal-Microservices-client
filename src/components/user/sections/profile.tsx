@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../../utils/methods/get";
+import { getProfile, getUserProfile } from "../../../utils/methods/get";
 import axios from "axios";
 import { insert } from "../../../store/userSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ type Data = {
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [userData,setUserData]=useState<any>({})
   const data: Data = useSelector((store: Store) => store.user.user);
 
   useEffect(() => {
@@ -25,15 +26,17 @@ const Profile = () => {
   }, []);
   const getUser = async () => {
     const data = await getProfile();
+    const profile = await  getUserProfile()
     console.log(data);
     if (data?.status !== 200) {
       navigate("/user/login");
     } else {
       dispatch(insert(data?.data));
+      setUserData(profile?.data)
     }
   };
   // }
-  console.log("hoem>>>>", data);
+  console.log("hoem>>>>", userData);
   return (
     <div className="sticky top-0">
       <div className="w-[500px] max-w-sm bg-white border  rounded-lg shadow-lg dark:bg-white ">
@@ -43,14 +46,14 @@ const Profile = () => {
         <div className="flex flex-col items-center pb-10">
           <img
             className="w-24 h-24 mb-3 rounded-full shadow-lg"
-            src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg"
-            alt="Bonnie image"
+            src={userData && userData.profileUrl}
+            alt=""
           />
           <h5 className="mb-1 text-xl font-medium text-gray-900 ">
             {data && data.firstName}
           </h5>
           <span className="text-sm text-gray-500 dark:text-gray-400">
-            Visual Designer
+            {userData.profile && userData.profile.title}
           </span>
           <div className="flex mt-4 space-x-3 md:mt-6">
             

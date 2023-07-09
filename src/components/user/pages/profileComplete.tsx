@@ -111,7 +111,7 @@ const ProfileComplete = () => {
               </form>
             </div>
           </div>
-          {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Accound already exists continue" redirect="login" redirectText="Login"/>}
+          {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Accound already exists continue" redirect="user/login" redirectText="Login"/>}
 
         </div>
       </div>

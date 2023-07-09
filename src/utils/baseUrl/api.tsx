@@ -4,7 +4,7 @@ axios.defaults.withCredentials = true;
 export const Axios = () => {
   // const navigate = useNavigate();
   const api = axios.create({
-    baseURL: "http://findx.in",
+    baseURL: "http://localhost",
   });
 
   api.interceptors.response.use((res: any) => {

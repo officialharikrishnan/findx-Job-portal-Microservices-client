@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { getAllPost } from "../../api/methods/get";
 import { Link } from "react-router-dom";
-import { getPosts } from "../../../utils/methods/get";
+import { getAllJobs, getPosts } from "../../../utils/methods/get";
 // import CreatePost from "./createPost";
 type Post = {
   data?: string;
@@ -14,19 +14,13 @@ type Post = {
 function Post() {
   const [posts, setPosts] = useState([]);
   const [count, setCount] = useState(["", "", "", "", "", "", "", "", "", ""]);
-  // useEffect(() => {
-  //   getAllPost()
-  //     .then((res: any) => {
-  //       console.log(res.data);
-  //       setPosts(res.data);
-  //     })
-  //     .catch((err: Error) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-  // const getAllPost = async () => {
-  //   return await getPosts();
-  // };
+  useEffect(() => {
+    getJobs()
+  }, []);
+  const getJobs = async ()=>{
+      const res =await getAllJobs()
+      console.log(res,"jobs")
+  }
 
   return (
     <div className="overflow-auto max-h-screen">

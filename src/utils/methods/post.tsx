@@ -60,9 +60,9 @@ export const ACCOUNT_FIND = async (data:any)=>{
     }
 }
 export const UPDATE_PROFILE = async (data:any)=>{
-    console.log(data)
+    console.log(data,"update profile api")
     try{
-        return Axios().post('/api/profile/create',data)
+        return await Axios().post('/api/profile/update',data)
     }catch(e){
 
     }
@@ -111,6 +111,13 @@ export const HR_GOOGLE_LOG_API = async (data:any)=>{
 export const HR_ACCOUNT_FIND = async (data:any)=>{
     try{
         return Axios().post('/api/hr/findAcc',data)
+    }catch(e){
+
+    }
+}
+export const JOB_CREATE = async (data:any) => {
+    try{
+        return Axios().post('/api/job/create',data)
     }catch(e){
 
     }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { cookieHandler } from "../../../utils/cookie/cookieHandler";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   
   const [isOpen, setIsOpen] = useState(false);
@@ -43,12 +43,12 @@ const Header = () => {
           </a>
           {/* Navbar */}
           <nav className="hidden md:ml-auto md:flex flex-wrap items-center justify-center text-base tracking-wide">
-            <a href="#link" className="mr-8 hover:text-gray-300">
+            <Link to={"/hr/dashboard"} className="mr-8 hover:text-gray-300">
               Home
-            </a>
-            <a href="#link" className="mr-8 hover:text-gray-300">
+            </Link>
+            <Link to={"/hr/view-profile"} className="mr-8 hover:text-gray-300">
             Profile
-            </a>
+            </Link>
             <button onClick={e=>logoutHandler(e)} className="mr-8 hover:text-gray-300">
               logout
             </button>

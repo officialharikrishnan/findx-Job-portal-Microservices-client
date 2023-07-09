@@ -211,7 +211,7 @@ const UpdatePassword = () => {
                     <p className="text-gray-600">Find Account</p>
                     <div className="flex flex-row">
                       <input
-                        type="email"
+                        type="text"
                         id="create-account-pseudo"
                         className=" rounded-l  flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base"
                         placeholder="email"

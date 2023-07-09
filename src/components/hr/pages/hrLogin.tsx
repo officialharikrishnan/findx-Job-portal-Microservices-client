@@ -133,6 +133,7 @@ const HrLogin = () => {
           {alert && <Alert color="bg-orange-200" border="border-orange-500" message="Invalied phone or password"/>}
 
             <GoogleSignInHr/>
+          <Link to={"/"} className="mt-3 w-full text-center font-medium text-gray-500"> Back to home</Link>
           </div> 
         </div>
       </div>

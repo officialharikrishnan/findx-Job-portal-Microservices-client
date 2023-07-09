@@ -16,12 +16,12 @@ declare global {
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDFj44Tvl4PueAjpmQoQOKYzMcVyOjdbUM",
-  authDomain: "authmanager-43026.firebaseapp.com",
-  projectId: "authmanager-43026",
-  storageBucket: "authmanager-43026.appspot.com",
-  messagingSenderId: "665732300465",
-  appId: "1:665732300465:web:91ce3b2e8f11ce8c0cec90"
+  apiKey: "AIzaSyAs39UEj74sHX3ExRWKmPQBE5DOG2mqst0",
+  authDomain: "backup-391e1.firebaseapp.com",
+  projectId: "backup-391e1",
+  storageBucket: "backup-391e1.appspot.com",
+  messagingSenderId: "1087296783453",
+  appId: "1:1087296783453:web:07923d55592042597f39b4"
 };
 console.log(firebaseConfig)
 

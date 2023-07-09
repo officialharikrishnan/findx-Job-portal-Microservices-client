@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useValidate, RegisterData } from "../../../formValidation/hrRegister";
 import { HR_EXIST_CHECK } from "../../../utils/methods/post";
@@ -9,6 +9,7 @@ import GoogleSignupHr from "../sections/hrGoogleReg";
 import useFirebaseMobileOTP from "../../../utils/custom/firebaseAuth";
 
 const HrRegister = () => {
+
   const {register,handleSubmit,errors} = useValidate()
   const {sendOTP} =useFirebaseMobileOTP()
   const [phone,setPhone]=useState('')
@@ -21,6 +22,7 @@ const HrRegister = () => {
     const hrExist = await HR_EXIST_CHECK(data) 
     if(!hrExist?.data.hrExist){
       dispatch(createHr(data))
+      console.log("send otp called")
       sendOTP(phone,'hr/verify')
     }else{
       setSubmit(false)

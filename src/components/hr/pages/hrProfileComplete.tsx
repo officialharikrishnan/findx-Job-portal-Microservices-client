@@ -179,7 +179,7 @@ const HrProfileComplete = () => {
                   color="bg-orange-200"
                   border="border-orange-500"
                   message="Accound already exists, please try to"
-                  redirect="hr-login"
+                  redirect="hr/login"
                   redirectText="Login"
                 />
               )}

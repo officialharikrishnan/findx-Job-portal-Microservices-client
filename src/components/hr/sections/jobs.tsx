@@ -1,37 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { getAllJobs } from "../../../utils/methods/get";
+interface Job{
+  title?:string,
+  description?:string,
+  location?:string,
+  companyName?:string,
+  logo?:string
+}
 const Jobs = () => {
   const [count, setCount] = useState(["", "", "", "", "", "", "", "", "", ""]);
+  const [jobs,setJobs]=useState([])
+
+  useEffect(() => {
+    getJobs()
+  }, []);
+  const getJobs = async ()=>{
+      const res =await getAllJobs()
+      if(res?.status === 200){
+        setJobs(res?.data)
+      }
+      console.log(res,"??????")
+    }
+    console.log(jobs,"////////")
 
   return (
     <div className="overflow-auto max-h-screen">
     <div className="flex flex-wrap justify-center">
-      {count &&
-        count.map(() => {
+      {jobs &&
+        jobs.map((job:Job) => {
           return (
-            <div className="p-4 max-w-sm">
+            <div className="p-4 w-80">
               <div className="flex rounded-lg h-full bg-sky-400 p-8 flex-col">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
                     <img
-                      src="https://ibsintelligence.com/wp-content/uploads/2021/09/TCS.jpg"
+                      src={job.logo}
                       alt=""
                     />
                   </div>
                   <div className="flex flex-col text-left">
                     <h2 className="text-white text-lg font-medium">
-                      MERN Stack developr
+                      {job.title}
                     </h2>
-                    <p className="text-gray-500 text-lg">Tata Consultancy Services</p>
-                    <p className="text-gray-500 text-md">Kochi</p>
+                    <p className="text-gray-500 text-lg">{job.companyName}</p>
+                    <p className="text-gray-500 text-md">{job.location}</p>
                   </div>
                 </div>
                 <div className="flex flex-col justify-between flex-grow">
                   <p className="leading-relaxed text-left text-white">
-                    The candidate should have a strong knowledge of Node,
-                    React, and MongoDB. Responsibilities: Design and develop
-                    high-performance web applications using the MERN stack.
+                    {job.description}
                   </p>
                   <Link
                     to={"/user/home"}
@@ -56,6 +74,7 @@ const Jobs = () => {
           );
         })}
     </div>
+    
   </div>
   );
 };

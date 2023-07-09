@@ -23,3 +23,12 @@ export const HR_UPDATE_PASSWORD = async (data:any)=>{
 
     }
 }
+
+
+export const HR_UPDATE_PROFILE = async (data:any)=>{
+    try{
+        return Axios().patch('/api/hr/updateprofile',data)
+    }catch(e){
+
+    }
+}

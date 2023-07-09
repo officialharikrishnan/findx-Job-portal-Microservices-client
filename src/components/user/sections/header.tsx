@@ -42,9 +42,9 @@ const Header = () => {
           </a>
           {/* Navbar */}
           <nav className="hidden md:ml-auto md:flex flex-wrap items-center justify-center text-base tracking-wide">
-            <a href="#link" className="mr-8 hover:text-gray-300">
+            <Link to={"/user/home"} className="mr-8 hover:text-gray-300">
               Home
-            </a>
+            </Link>
             <a href="#link" className="mr-8 hover:text-gray-300">
               Jobs
             </a>

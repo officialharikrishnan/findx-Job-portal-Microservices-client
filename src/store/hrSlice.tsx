@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const hrSlice = createSlice({
     name:'hr',
     initialState:{
-        hr:{}
+        hr:null
     },
     reducers:{
         insertHr:(state,action)=>{
